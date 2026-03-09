@@ -51,16 +51,22 @@ body {
     display: flex;
     gap: 20px;
     justify-content: space-between;
-    border-bottom: 1px solid hsl(240, 3%, 46%);
     color: hsl(240, 1%, 59%);
+    margin-bottom: 10px;
+}
+
+.nav__wrapper {
+    border-bottom: 1px solid hsl(240, 3%, 46%);
 }
 
 .nav span {
     color: white;
+    font-weight: 600;
 }
 
 .nav__stats {
     display: flex;
+    align-items: center;
     gap: 20px;
 }
 
@@ -75,7 +81,7 @@ body {
     align-items: center;
 }
 
-.nav__easy, .nav__difficulty .nav__medium, .nav__hard {
+.button__mode, .button__difficulty {
     color: white;
     font-size: 0.875rem;
     border: 1px solid hsl(240, 3%, 46%);
@@ -86,7 +92,7 @@ body {
     transition: all 0.3s ease;
 }
 
-.nav__easy.active, .nav__difficulty .nav__medium.active, .nav__hard.active {
+.button__mode.active, .button__difficulty.active {
     border: 1px solid hsl(210, 100%, 65%);
     color: hsl(210, 100%, 65%);
 } 
