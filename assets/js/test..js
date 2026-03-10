@@ -50,3 +50,14 @@ function startGame() {
     const text = passages[randomIndex].text;
     console.log(text);
 }
+
+function renderText(text){
+    
+    const container = document.getElementById("card__text");
+    container.innerHTML = "";
+    text.split("").forEach(letter => {
+        const span = document.createElement("span");
+        span.textContent = letter;
+        container.appendChild(span);
+    })
+}
