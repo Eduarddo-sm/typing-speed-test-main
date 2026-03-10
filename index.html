@@ -38,44 +38,49 @@
         </header>
         <div class="nav__wrapper">
           <nav class="nav">
-          <div class="nav__stats">
-            <div class="nav__wpm">
-              <p>WPM: <span>0</span></p>
+            <div class="nav__stats">
+              <div class="nav__wpm">
+                <p>WPM: <span>0</span></p>
+              </div>
+              <p>|</p>
+              <div class="nav__accuracy">
+                <p>Accuracy: <span>100%</span></p>
+              </div>
+              <p>|</p>
+              <div class="nav__time">
+                <p>Time: <span>0:60</span></p>
+              </div>
             </div>
-            <p>|</p>
-            <div class="nav__accuracy">
-              <p>Accuracy: <span>100%</span></p>
+            <div class="nav__mods">
+              <div class="nav__difficulty">
+                <p>Difficulty:</p>
+                <div class="button__difficulty active" data-tab="easy">
+                  <p>Easy</p>
+                </div>
+                <div class="button__difficulty" data-tab="medium">
+                  <p>Medium</p>
+                </div>
+                <div class="button__difficulty" data-tab="hard">
+                  <p>Hard</p>
+                </div>
+              </div>
+              <p style="font-size: 32px; font-weight: 300;">|</p>
+              <div class="nav__mode">
+                <p>Mode:</p>
+                <div class="button__mode active" data-tab="timed">
+                  <p>Timed (60s)</p>
+                </div>
+                <div class="button__mode" data-tab="passage">
+                  <p>Passage</p>
+                </div>
+              </div>
             </div>
-            <p>|</p>
-            <div class="nav__time">
-              <p>Time: <span>0:60</span></p>
-            </div>
+          </nav>
           </div>
-          <div class="nav__mods">
-            <div class="nav__difficulty">
-              <p>Difficulty:</p>
-              <div class="button__difficulty active" data-tab="easy">
-                <p>Easy</p>
-              </div>
-              <div class="button__difficulty" data-tab="medium">
-                <p>Medium</p>
-              </div>
-              <div class="button__difficulty" data-tab="hard">
-                <p>Hard</p>
-              </div>
-            </div>
-            <p style="font-size: 32px; font-weight: 300;">|</p>
-            <div class="nav__mode">
-              <p>Mode:</p>
-              <div class="button__mode active">
-                <p>Timed (60s)</p>
-              </div>
-              <div class="button__mode">
-                <p>Passage</p>
-              </div>
-            </div>
+          <div class="card__content">
+            <div name="" id="card__text" class="card__text"></div>
+            <input type="text" id="card__input" autocomplete="off">
           </div>
-        </nav>
         </div>
       </div>
     </div>
