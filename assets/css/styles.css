@@ -84,7 +84,8 @@ main {
     align-items: center;
 }
 
-.button__mode, .button__difficulty {
+.button__mode,
+.button__difficulty {
     color: white;
     font-size: 0.875rem;
     border: 1px solid hsl(240, 3%, 46%);
@@ -95,10 +96,11 @@ main {
     transition: all 0.3s ease;
 }
 
-.button__mode.active, .button__difficulty.active {
+.button__mode.active,
+.button__difficulty.active {
     border: 1px solid hsl(210, 100%, 65%);
     color: hsl(210, 100%, 65%);
-} 
+}
 
 .nav__mode {
     display: flex;
@@ -106,7 +108,8 @@ main {
     align-items: center;
 }
 
-.nav__timed, .nav__passage {
+.nav__timed,
+.nav__passage {
     color: white;
     font-size: 0.875rem;
     border: 1px solid hsl(240, 3%, 46%);
@@ -117,7 +120,8 @@ main {
     transition: all 0.3s ease;
 }
 
-.nav__timed.active, .nav__passage.active {
+.nav__timed.active,
+.nav__passage.active {
     border: 1px solid hsl(210, 100%, 65%);
     color: hsl(210, 100%, 65%);
 }
@@ -141,28 +145,30 @@ main {
 #card__input {
     position: absolute;
     opacity: 0;
-    pointer-events: none;
+    /* pointer-events: none; */
 }
 
-.card__text span {
-        color: hsl(240, 1%, 59%);
+.card__text span{
+    color: hsl(240, 1%, 59%);
 }
 
-.text span.correct {
+
+
+.card__text span.correct {
     color: #4caf50;
 }
 
-.text span.wrong {
+.card__text span.wrong {
     color: #ff5252;
 }
 
-.text span.active {
+.card__text span.active {
     border-left: 2px solid #2b2c2d;
     animation: blink 1s infinite;
 }
 
 @keyframes blink {
-    50%{
+    50% {
         border-color: transparent;
     }
 }
