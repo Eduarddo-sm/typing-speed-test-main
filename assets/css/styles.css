@@ -150,6 +150,7 @@ main {
 
 .card__text span{
     color: hsl(240, 1%, 59%);
+    border: 2px solid transparent;
 }
 
 
@@ -163,7 +164,7 @@ main {
 }
 
 .card__text span.active {
-    border-left: 2px solid #2b2c2d;
+    border-left: 2px solid #0e64ba;
     animation: blink 1s infinite;
 }
 

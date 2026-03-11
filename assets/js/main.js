@@ -1,6 +1,7 @@
 import words from "./data.json" with {type: "json"};
 const difficulties = document.querySelectorAll(".button__difficulty");
 const mode = document.querySelectorAll(".button__mode");
+const input = document.getElementById("card__input");
 const typeSettings = {
     diffculty: "easy",
     mode: "timed"
@@ -42,6 +43,33 @@ function renderText(text){
         const span = document.createElement('span')
         span.textContent = letter;
         container.appendChild(span);
+    })
+}
+
+input.addEventListener("input", handleInput);
+
+function handleInput(){
+    const spans = document.querySelectorAll("#card__text span");
+    const typedText = input.value.split("");
+    
+
+    spans.forEach((span, index) => {
+        const letter = typedText[index];
+        span.classList.remove("active");
+
+        if (letter == null){
+            span.classList.remove("correct", "wrong");
+        } else if (letter === span.textContent){
+            span.classList.add("correct");
+            span.classList.remove("wrong");
+        } else {
+            span.classList.add("wrong");
+            span.classList.remove("correct");
+        }
+
+        if(index === typedText.length) {
+            span.classList.add("active");
+        }
     })
 }
 
