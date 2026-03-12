@@ -2,13 +2,20 @@ import words from "./data.json" with {type: "json"};
 const difficulties = document.querySelectorAll(".button__difficulty");
 const mode = document.querySelectorAll(".button__mode");
 const input = document.getElementById("card__input");
+
 const typeSettings = {
     diffculty: "easy",
     mode: "timed"
 }
+let stats = {
+    wpm: 0,
+    accuracy: 0,
+}
+
+
 
 difficulties.forEach(button => {
-    button.addEventListener('click', ()=>{
+    button.addEventListener('click', () => {
         difficulties.forEach(btn => btn.classList.remove('active'));
         button.classList.add('active');
 
@@ -18,7 +25,7 @@ difficulties.forEach(button => {
 })
 
 mode.forEach(button => {
-    button.addEventListener('click', ()=>{
+    button.addEventListener('click', () => {
         mode.forEach(btn => btn.classList.remove('active'));
         button.classList.add('active');
 
@@ -26,7 +33,7 @@ mode.forEach(button => {
     })
 })
 
-function startTyping(){
+function startTyping() {
     const diffculty = typeSettings.diffculty;
     const mode = typeSettings.mode;
     const passage = words[diffculty];
@@ -36,7 +43,7 @@ function startTyping(){
     renderText(text);
 }
 
-function renderText(text){
+function renderText(text) {
     const container = document.getElementById("card__text");
     container.innerHTML = "";
     text.split("").forEach(letter => {
@@ -46,32 +53,45 @@ function renderText(text){
     })
 }
 
-input.addEventListener("input", handleInput);
 
-function handleInput(){
-    const spans = document.querySelectorAll("#card__text span");
-    const typedText = input.value.split("");
-    
+function start() {
+    input.addEventListener("input", handleInput);
 
-    spans.forEach((span, index) => {
-        const letter = typedText[index];
-        span.classList.remove("active");
 
-        if (letter == null){
-            span.classList.remove("correct", "wrong");
-        } else if (letter === span.textContent){
-            span.classList.add("correct");
-            span.classList.remove("wrong");
-        } else {
-            span.classList.add("wrong");
-            span.classList.remove("correct");
-        }
+    function handleInput() {
+        const spans = document.querySelectorAll("#card__text span");
+        const typedText = input.value.split("");
 
-        if(index === typedText.length) {
-            span.classList.add("active");
-        }
-    })
+        spans.forEach((span, index) => {
+            const letter = typedText[index];
+            span.classList.remove("active");
+
+            if (letter == null) {
+                span.classList.remove("correct", "wrong");
+            } else if (letter === span.textContent) {
+                span.classList.add("correct");
+                span.classList.remove("wrong");
+            } else {
+                span.classList.add("wrong");
+                span.classList.remove("correct");
+            }
+
+            if (index === typedText.length) {
+                span.classList.add("active");
+            }
+
+            if (typedText.length == spans.length) {
+                const correct = document.querySelectorAll("#card__text span.correct").length;
+                stats.accuracy = (correct / spans.length) * 100;
+                getAccuracy();
+            }
+        })
+
+    }
 }
 
 
 
+
+
+start()
