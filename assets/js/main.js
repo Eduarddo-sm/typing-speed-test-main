@@ -4,6 +4,9 @@ const mode = document.querySelectorAll(".button__mode");
 const input = document.getElementById("card__input");
 const btnStart = document.getElementById("button__start");
 const textContainer = document.querySelector(".card__content");
+const buttonRestart = document.getElementById("button__restart");
+const contentContainer = document.querySelector(".card__content");
+let testStarted = false;
 let time = 60;
 let timeStarted = false;
 let interval;
@@ -49,6 +52,7 @@ function startTyping() {
 
     getStats();
     renderText(text);
+    testStarted = true;
 }
 
 function renderText(text) {
@@ -62,10 +66,10 @@ function renderText(text) {
 }
 
 
-function start() {
     input.addEventListener("input", handleInput);
 
     function handleInput() {
+        if (!testStarted) return;
         const spans = document.querySelectorAll("#card__text span");
         const typedText = input.value.split("");
 
@@ -101,7 +105,6 @@ function start() {
             }
 
     }
-}
 
 function startTimer() {
     interval = setInterval(()=>{
@@ -154,11 +157,32 @@ btnStart.addEventListener("click", () =>{
     const container = document.querySelector(".card__start");
     container.style.display = "none";
     input.focus();
-    start();
+    startTyping();
 })
 
 textContainer.addEventListener("click", ()=>{
     input.focus();
+})
+
+contentContainer.addEventListener("click", (event)=>{
+    const container = document.querySelector(".card__start");
+    const divSize = contentContainer.getBoundingClientRect();
+    
+    const clickY = event.clientY - divSize.top;
+    const divHalf = divSize.height / 3
+
+    const display = getComputedStyle(container).display;
+
+
+    if (clickY < divHalf) {
+        if (display == "flex") {
+            container.style.display = "none";
+            startTyping();
+            input.focus();
+        } else {
+            return
+        }
+    } 
 })
 
 function saveStats(){
@@ -234,6 +258,16 @@ function callModal(){
         characterWrong.textContent = wrong;
     }
 }
+
+buttonRestart.addEventListener("click", ()=>{
+    const containerModal = document.querySelector("#modal");
+    const containerContent = document.querySelector(".container__content");
+    const containerStart = document.querySelector(".card__start");
+
+    containerStart.style.display = "flex";
+    containerModal.style.display = "none";
+    containerContent.style.display = "flex";
+})
 
 startTyping();
 
