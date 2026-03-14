@@ -95,9 +95,9 @@ function start() {
          if (typedText.length == spans.length) {
                 updateWPM();
                 updateAccuracy();
+                callModal();
                 resetTime();
                 saveStats();
-                
             }
 
     }
@@ -167,12 +167,72 @@ function saveStats(){
 
 function getStats(){
     const user = JSON.parse(localStorage.getItem("stats"));
+    if (user == null) return;
     stats.bwpm = user.bwpm;
     const containerBWPM = document.querySelector(".header__record span");
     containerBWPM.textContent = user.bwpm;
 
     const containerAccuracy = document.querySelector(".nav__accuracy span");
     containerAccuracy.textContent = user.accuracy;
+}
+
+function callModal(){
+    const containerModal = document.querySelector("#modal");
+    const containerContent = document.querySelector(".container__content");
+    const title = document.querySelector(".modal__text h1");
+    const subtitle = document.querySelector(".modal__text p");
+    const wpm = document.querySelector(".wpm__box span");
+    const accuracy = document.querySelector(".accuracy__box span");
+    const characterCorrect = document.querySelector(".character__box .char__correct");
+    const characterWrong = document.querySelector(".character__box .char__wrong");
+    const correct = document.querySelectorAll("#card__text span.correct").length;
+    const wrong = document.querySelectorAll("#card__text span.wrong").length;
+    const button = document.querySelector("#modal button");
+    const imgModal = document.querySelector("#modal img");
+    const user = JSON.parse(localStorage.getItem("stats"));
+
+    if (stats.accuracy <= 90){
+            accuracy.style.color = "hsl(354, 63%, 57%)";
+    }
+
+    if (!localStorage.getItem("stats")){
+        containerModal.style.display = "flex"
+        containerContent.style.display = "none"
+
+        title.textContent = "Baseline Established!";
+        subtitle.textContent = "You've set the bar. Now the real challenge begins-time to beat it."
+        imgModal.src = "./assets/images/icon-completed.svg"
+        wpm.textContent = stats.wpm;
+        accuracy.textContent = `${stats.accuracy}%`;
+
+        characterCorrect.textContent = correct;
+        characterWrong.textContent = wrong;
+
+        button.textContent = "Beat This Score";
+    } else if (stats.wpm > user.bwpm) {
+        
+        containerModal.style.display = "flex"
+        containerContent.style.display = "none"
+        imgModal.src = "./assets/images/icon-new-pb.svg"
+        title.textContent = "High Score Smashed!";
+        subtitle.textContent = "Youre getting fast. That was incredible typing.";
+
+        wpm.textContent = stats.wpm;
+        accuracy.textContent = `${stats.accuracy}%`;
+
+        characterCorrect.textContent = correct;
+        characterWrong.textContent = wrong;
+
+        button.textContent = "Beat This Score";
+    } else {
+        containerModal.style.display = "flex"
+        containerContent.style.display = "none"
+        wpm.textContent = stats.wpm;
+        imgModal.src = "./assets/images/icon-completed.svg"
+        accuracy.textContent = `${stats.accuracy}%`;
+        characterCorrect.textContent = correct;
+        characterWrong.textContent = wrong;
+    }
 }
 
 startTyping();

@@ -36,7 +36,23 @@
             <p>Personal best: <span><!-- PB --> WPM</span></p>
           </div>
         </header>
-        <div class="nav__wrapper">
+          <div class="modal" id="modal">
+              <div class="card__modal">
+                <img class="img" src="./assets/images/icon-completed.svg" alt="">
+                <div class="modal__text">
+                  <h1>Test Complete!</h1>
+                  <p>Solid run. Keep pushing to beat your high score.</p>
+                </div>
+                <div class="modal__boxes">
+                  <div class="wpm__box" id="boxes">WPM: <span>85</span></div>
+                  <div class="accuracy__box" id="boxes">Accuracy: <span>90%</span></div>
+                  <div class="character__box" id="boxes">Characters: <span class="char"><span class="char__correct">120</span>/<span class="char__wrong">5</span></span></div>
+                </div>
+                <button class="button__restart" id="button__restart">Go Again <img src="./assets/images/icon-restart.svg"alt=""></button>
+              </div>
+          </div>
+          <div class="container__content">
+             <div class="nav__wrapper">
           <nav class="nav">
             <div class="nav__stats">
               <div class="nav__wpm">
@@ -84,6 +100,7 @@
             </div>
             <div name="" id="card__text" class="card__text"></div>
             <input type="text" id="card__input" autocomplete="off">
+          </div>
           </div>
         </div>
       </div>
