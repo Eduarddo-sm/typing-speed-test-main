@@ -47,6 +47,7 @@ function startTyping() {
     const randomIndex = Math.floor(Math.random() * passage.length);
     const text = passage[randomIndex].text;
 
+    getStats();
     renderText(text);
 }
 
@@ -92,10 +93,11 @@ function start() {
         });
 
          if (typedText.length == spans.length) {
-                const correct = document.querySelectorAll("#card__text span.correct").length;
-                stats.accuracy = (correct / spans.length) * 100;
                 updateWPM();
+                updateAccuracy();
                 resetTime();
+                saveStats();
+                
             }
 
     }
@@ -132,8 +134,18 @@ function updateWPM(){
     }
 }
 
+function updateAccuracy(){
+    const containerAccuracy = document.querySelector(".nav__accuracy span");
+    const totalChar = document.querySelectorAll("#card__text span").length;
+    const correct = document.querySelectorAll("#card__text span.correct").length;
+    console.log(totalChar, correct)
+    stats.accuracy = Math.floor((correct / totalChar) * 100);
+    console.log((correct / totalChar) * 100);
+    containerAccuracy.textContent =` ${stats.accuracy}%`;
+
+}
+
 function resetTime(){
-    console.log("ola");
     timeStarted = false;
     clearInterval(interval);
 }
@@ -149,7 +161,22 @@ textContainer.addEventListener("click", ()=>{
     input.focus();
 })
 
-startTyping()
+function saveStats(){
+    localStorage.setItem("stats", JSON.stringify(stats));
+}
+
+function getStats(){
+    const user = JSON.parse(localStorage.getItem("stats"));
+    stats.bwpm = user.bwpm;
+    const containerBWPM = document.querySelector(".header__record span");
+    containerBWPM.textContent = user.bwpm;
+
+    const containerAccuracy = document.querySelector(".nav__accuracy span");
+    containerAccuracy.textContent = user.accuracy;
+}
+
+startTyping();
+
 
 
 
