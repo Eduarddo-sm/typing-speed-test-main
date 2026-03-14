@@ -2,7 +2,11 @@ import words from "./data.json" with {type: "json"};
 const difficulties = document.querySelectorAll(".button__difficulty");
 const mode = document.querySelectorAll(".button__mode");
 const input = document.getElementById("card__input");
-
+const btnStart = document.getElementById("button__start");
+const textContainer = document.querySelector(".card__content");
+let time = 60;
+let timeStarted = false;
+let interval;
 const typeSettings = {
     diffculty: "easy",
     mode: "timed"
@@ -10,6 +14,7 @@ const typeSettings = {
 let stats = {
     wpm: 0,
     accuracy: 0,
+    bwpm: 0
 }
 
 
@@ -34,6 +39,8 @@ mode.forEach(button => {
 })
 
 function startTyping() {
+    input.value = ""
+    time = 60;
     const diffculty = typeSettings.diffculty;
     const mode = typeSettings.mode;
     const passage = words[diffculty];
@@ -57,15 +64,18 @@ function renderText(text) {
 function start() {
     input.addEventListener("input", handleInput);
 
-
     function handleInput() {
         const spans = document.querySelectorAll("#card__text span");
         const typedText = input.value.split("");
 
+        if (typeSettings.mode == "timed" && timeStarted == false) {
+        timeStarted = true;
+        startTimer();
+    }
+
         spans.forEach((span, index) => {
             const letter = typedText[index];
             span.classList.remove("active");
-
             if (letter == null) {
                 span.classList.remove("correct", "wrong");
             } else if (letter === span.textContent) {
@@ -79,19 +89,67 @@ function start() {
             if (index === typedText.length) {
                 span.classList.add("active");
             }
+        });
 
-            if (typedText.length == spans.length) {
+         if (typedText.length == spans.length) {
                 const correct = document.querySelectorAll("#card__text span.correct").length;
                 stats.accuracy = (correct / spans.length) * 100;
-                getAccuracy();
+                updateWPM();
+                resetTime();
             }
-        })
 
     }
 }
 
+function startTimer() {
+    interval = setInterval(()=>{
+        time--;
+
+        const timerContainer = document.querySelector(".nav__time span");
+        timerContainer.textContent = time;
+
+        if (time < 10){
+            timerContainer.textContent = `0${time}`;
+        }
+
+        if(time <= 0){
+            resetTime();
+        }
+    }, 1000);
+}
+
+function updateWPM(){
+    const containerWPM = document.querySelector(".nav__wpm span");
+    const correctChars = document.querySelectorAll("#card__text span.correct").length;
+    const timePassed = 60 - time;
+    stats.wpm = Math.round((correctChars / 5) / (timePassed / 60));
+    containerWPM.textContent = stats.wpm;
+
+    if (stats.wpm > stats.bwpm){
+        const bestWPM = document.querySelector(".header__record span");
+        stats.bwpm = stats.wpm;
+        bestWPM.textContent = stats.wpm;
+    }
+}
+
+function resetTime(){
+    console.log("ola");
+    timeStarted = false;
+    clearInterval(interval);
+}
+
+btnStart.addEventListener("click", () =>{
+    const container = document.querySelector(".card__start");
+    container.style.display = "none";
+    input.focus();
+    start();
+})
+
+textContainer.addEventListener("click", ()=>{
+    input.focus();
+})
+
+startTyping()
 
 
 
-
-start()
