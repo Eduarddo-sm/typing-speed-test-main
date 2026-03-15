@@ -128,7 +128,7 @@ main {
     flex: 1;
 }
 
-.card__start {  
+.card__start {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -152,7 +152,7 @@ main {
     transition: all 0.3s ease;
     border: 2px solid #0a2a4a;
     box-shadow: 0 0 0 1px #4aa3ff;
-    
+
 }
 
 .button__start:hover {
@@ -180,7 +180,7 @@ main {
     pointer-events: none;
 }
 
-.card__text span{
+.card__text span {
     color: hsl(240, 1%, 59%);
 }
 
@@ -322,7 +322,12 @@ main {
 
 
 
-@media (max-width: 1024px){
+@media (max-width: 1024px) {
+
+    .container {
+        padding: 0;
+    }
+
     .nav {
         flex-direction: column;
         align-items: center;
@@ -335,7 +340,8 @@ main {
         gap: 10px;
     }
 
-    .nav__stats, .nav__mods {
+    .nav__stats,
+    .nav__mods {
         width: 100%;
     }
 
@@ -345,39 +351,67 @@ main {
         text-align: center;
     }
 
-    .nav__difficulty, .nav__mode {
-    display: none;
+    .nav__difficulty,
+    .nav__mode {
+        display: none;
     }
 
     .nav__mods-line {
         display: none;
     }
 
-    .nav__dropdowns{
+    .nav__dropdowns {
         width: 100%;
         display: flex;
         background-color: hsl(0, 0%, 7%);
-        
+
     }
 
-    .nav__dropdowns select{
+    .nav__dropdowns select {
         width: 50%;
-        background:#111;
-        color:white;
-        border:1px solid hsl(240,3%,46%);
-        padding:6px 10px;
-        border-radius:6px;
+        background: #111;
+        color: white;
+        border: 1px solid hsl(240, 3%, 46%);
+        padding: 6px 10px;
+        border-radius: 6px;
     }
-    
+
 }
 
-@media (max-width: 430px){
+@media (max-width: 430px) {
     .nav__stats {
         font-size: 1.6rem;
     }
+
+    .modal {
+        align-items: start;
+        padding: 0 20px;
+    }
+
+    .modal::before {
+        top: 0px;
+        left: -20px;
+        transform: scale(0.8);
+    }
+
+    .modal::after {
+        top: 338px;
+        left: 242px;
+        background-image: url(var(--bg-win));
+        transform: scale(0.5);
+    }
+
+    .modal__boxes {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .modal img {
+        width: 50px;
+    }
 }
 
-@media (max-width: 375px){
+@media (max-width: 375px) {
     .nav__stats {
         font-size: 1rem;
         gap: 14px;

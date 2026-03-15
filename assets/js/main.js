@@ -230,12 +230,12 @@ function callModal(){
     }
 
     if (!localStorage.getItem("stats")){
-        containerModal.style.display = "flex"
-        containerContent.style.display = "none"
+        containerModal.style.display = "flex";
+        containerContent.style.display = "none";
 
         title.textContent = "Baseline Established!";
-        subtitle.textContent = "You've set the bar. Now the real challenge begins-time to beat it."
-        imgModal.src = "./assets/images/icon-completed.svg"
+        subtitle.textContent = "You've set the bar. Now the real challenge begins-time to beat it.";
+        imgModal.src = "./assets/images/icon-completed.svg";
         wpm.textContent = stats.wpm;
         accuracy.textContent = `${stats.accuracy}%`;
 
@@ -245,12 +245,12 @@ function callModal(){
         button.textContent = "Beat This Score";
     } else if (stats.wpm > user.bwpm) {
         
-        containerModal.style.display = "flex"
-        containerContent.style.display = "none"
-        imgModal.src = "./assets/images/icon-new-pb.svg"
+        containerModal.style.display = "flex";
+        containerContent.style.display = "none";
+        imgModal.src = "./assets/images/icon-new-pb.svg";
         title.textContent = "High Score Smashed!";
         subtitle.textContent = "Youre getting fast. That was incredible typing.";
-
+        containerModal.style.setProperty("--bg-win", "./assets/images/pattern-confetti.svg");
         wpm.textContent = stats.wpm;
         accuracy.textContent = `${stats.accuracy}%`;
 
@@ -259,7 +259,7 @@ function callModal(){
 
         button.textContent = "Beat This Score";
     } else {
-        containerModal.style.display = "flex"
+        containerModal.style.display = "flex";
         containerContent.style.display = "none"
         wpm.textContent = stats.wpm;
         imgModal.src = "./assets/images/icon-completed.svg"
