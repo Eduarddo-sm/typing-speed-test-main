@@ -6,12 +6,14 @@ const btnStart = document.getElementById("button__start");
 const textContainer = document.querySelector(".card__content");
 const buttonRestart = document.getElementById("button__restart");
 const contentContainer = document.querySelector(".card__content");
+const difficultySelectMobile = document.getElementById("difficultySelect");
+const modeSelectMobile = document.getElementById("modeSelect");
 let testStarted = false;
 let time = 60;
 let timeStarted = false;
 let interval;
 const typeSettings = {
-    diffculty: "easy",
+    difficulty: "easy",
     mode: "timed"
 }
 let stats = {
@@ -21,13 +23,21 @@ let stats = {
 }
 
 
+difficultySelectMobile.addEventListener("change", () => {
+    typeSettings.difficulty = difficultySelectMobile.value;
+    startTyping();
+});
+
+modeSelectMobile.addEventListener("change", () => {
+    typeSettings.mode = modeSelectMobile.value;
+});
 
 difficulties.forEach(button => {
     button.addEventListener('click', () => {
         difficulties.forEach(btn => btn.classList.remove('active'));
         button.classList.add('active');
 
-        typeSettings.diffculty = button.getAttribute("data-tab");
+        typeSettings.difficulty = button.getAttribute("data-tab");
         startTyping();
     })
 })
@@ -44,9 +54,9 @@ mode.forEach(button => {
 function startTyping() {
     input.value = ""
     time = 60;
-    const diffculty = typeSettings.diffculty;
+    const difficulty = typeSettings.difficulty;
     const mode = typeSettings.mode;
-    const passage = words[diffculty];
+    const passage = words[difficulty];
     const randomIndex = Math.floor(Math.random() * passage.length);
     const text = passage[randomIndex].text;
 
@@ -197,7 +207,7 @@ function getStats(){
     containerBWPM.textContent = user.bwpm;
 
     const containerAccuracy = document.querySelector(".nav__accuracy span");
-    containerAccuracy.textContent = user.accuracy;
+    containerAccuracy.textContent = `${user.accuracy}%`;
 }
 
 function callModal(){

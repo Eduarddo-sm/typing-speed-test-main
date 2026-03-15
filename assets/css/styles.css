@@ -100,6 +100,7 @@ main {
 .button__difficulty.active {
     border: 1px solid hsl(210, 100%, 65%);
     color: hsl(210, 100%, 65%);
+
 }
 
 .nav__mode {
@@ -120,11 +121,6 @@ main {
     transition: all 0.3s ease;
 }
 
-.nav__timed.active,
-.nav__passage.active {
-    border: 1px solid hsl(210, 100%, 65%);
-    color: hsl(210, 100%, 65%);
-}
 
 .card__content {
     position: relative;
@@ -154,12 +150,14 @@ main {
     margin-bottom: 5px;
     cursor: pointer;
     transition: all 0.3s ease;
+    border: 2px solid #0a2a4a;
+    box-shadow: 0 0 0 1px #4aa3ff;
     
 }
 
 .button__start:hover {
-    border: 2px solid #0a2a4a;
-    box-shadow: 0 0 0 1px #4aa3ff;
+    border: 2px solid transparent;
+    box-shadow: 0 0 0 1px transparent;
 }
 
 .card__text {
@@ -314,4 +312,74 @@ main {
     height: 100%;
     display: flex;
     flex-direction: column;
+}
+
+.nav__dropdowns {
+    display: none;
+    gap: 10px;
+    cursor: pointer;
+}
+
+
+
+@media (max-width: 1024px){
+    .nav {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 650px) {
+
+    .nav {
+        gap: 10px;
+    }
+
+    .nav__stats, .nav__mods {
+        width: 100%;
+    }
+
+    .nav__stats {
+        justify-content: center;
+        font-size: 1.875rem;
+        text-align: center;
+    }
+
+    .nav__difficulty, .nav__mode {
+    display: none;
+    }
+
+    .nav__mods-line {
+        display: none;
+    }
+
+    .nav__dropdowns{
+        width: 100%;
+        display: flex;
+        background-color: hsl(0, 0%, 7%);
+        
+    }
+
+    .nav__dropdowns select{
+        width: 50%;
+        background:#111;
+        color:white;
+        border:1px solid hsl(240,3%,46%);
+        padding:6px 10px;
+        border-radius:6px;
+    }
+    
+}
+
+@media (max-width: 430px){
+    .nav__stats {
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 375px){
+    .nav__stats {
+        font-size: 1rem;
+        gap: 14px;
+    }
 }

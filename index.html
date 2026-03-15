@@ -80,7 +80,7 @@
                   <p>Hard</p>
                 </div>
               </div>
-              <p style="font-size: 32px; font-weight: 300;">|</p>
+              <p class="nav__mods-line" style="font-size: 32px; font-weight: 300;">|</p>
               <div class="nav__mode">
                 <p>Mode:</p>
                 <div class="button__mode active" data-tab="timed">
@@ -89,6 +89,17 @@
                 <div class="button__mode" data-tab="passage">
                   <p>Passage</p>
                 </div>
+              </div>
+              <div class="nav__dropdowns">
+                <select id="difficultySelect">
+                  <option value="easy" selected>Easy</option>
+                  <option value="medium">Medium</option>
+                  <option value="hard">Hard</option>
+                </select>
+                <select id="modeSelect">
+                  <option value="timed" selected>Timed (60s)</option>
+                  <option value="passage">Passage</option>
+                </select>
               </div>
             </div>
           </nav>
