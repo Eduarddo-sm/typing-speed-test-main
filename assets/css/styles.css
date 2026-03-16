@@ -364,6 +364,7 @@ main {
     .nav__dropdowns {
         width: 100%;
         display: flex;
+        padding: 0 12px;
         background-color: hsl(0, 0%, 7%);
 
     }
