@@ -283,6 +283,43 @@ buttonRestart.addEventListener("click", ()=>{
 })
 
 
+function letTest(){
+    const containerModal = document.querySelector("#modal");
+    const containerContent = document.querySelector(".container__content");
+    const title = document.querySelector(".modal__text h1");
+    const subtitle = document.querySelector(".modal__text p");
+    const wpm = document.querySelector(".wpm__box span");
+    const accuracy = document.querySelector(".accuracy__box span");
+    const characterCorrect = document.querySelector(".character__box .char__correct");
+    const characterWrong = document.querySelector(".character__box .char__wrong");
+    const correct = document.querySelectorAll("#card__text span.correct").length;
+    const wrong = document.querySelectorAll("#card__text span.wrong").length;
+    const button = document.querySelector("#modal button");
+    const imgModal = document.querySelector("#modal img");
+    const user = JSON.parse(localStorage.getItem("stats"));
+
+        containerModal.style.display = "flex";
+        containerContent.style.display = "none";
+        imgModal.src = "./assets/images/icon-new-pb.svg";
+        title.textContent = "High Score Smashed!";
+        subtitle.textContent = "Youre getting fast. That was incredible typing.";
+        containerModal.style.setProperty(
+        "--bg-win",
+        'url("../images/pattern-confetti.svg")'
+        );
+        containerModal.style.setProperty("--scale", "scale(1.2)")
+        containerModal.style.setProperty("--left", "0px")
+        containerModal.style.setProperty("--top", "530px")
+        wpm.textContent = stats.wpm;
+        accuracy.textContent = `${stats.accuracy}%`;
+
+        characterCorrect.textContent = correct;
+        characterWrong.textContent = wrong;
+
+        button.textContent = "Beat This Score";
+}
+
+letTest();
 startTyping();
 
 
