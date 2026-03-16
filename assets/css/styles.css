@@ -228,11 +228,12 @@ main {
     position: absolute;
     width: 100%;
     height: 100%;
-    left: 1300px;
-    top: 350px;
-    background-image: url(../images/pattern-star-1.svg);
+    left: var(--left);
+    top: var(--top);
+    background-image: var(--bg-win);
     background-repeat: no-repeat;
     z-index: -1;
+    transform: var(--scale);
 }
 
 .modal .card__modal {
@@ -396,8 +397,8 @@ main {
 
     .modal::after {
         top: 338px;
-        left: 242px;
-        background-image: url(var(--bg-win));
+        left: 0px;
+        background-image: var(--bg-win);
         transform: scale(0.5);
     }
 

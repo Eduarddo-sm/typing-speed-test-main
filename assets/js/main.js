@@ -250,7 +250,10 @@ function callModal(){
         imgModal.src = "./assets/images/icon-new-pb.svg";
         title.textContent = "High Score Smashed!";
         subtitle.textContent = "Youre getting fast. That was incredible typing.";
-        containerModal.style.setProperty("--bg-win", "./assets/images/pattern-confetti.svg");
+        containerModal.style.setProperty("--bg-win", 'url("./assets/images/pattern-confetti.svg")');
+        containerModal.style.setProperty("--scale", "scale(1.2)");
+        containerModal.style.setProperty("--left", "0px");
+        containerModal.style.setProperty("--top", "530px")
         wpm.textContent = stats.wpm;
         accuracy.textContent = `${stats.accuracy}%`;
 
@@ -278,6 +281,7 @@ buttonRestart.addEventListener("click", ()=>{
     containerModal.style.display = "none";
     containerContent.style.display = "flex";
 })
+
 
 startTyping();
 
