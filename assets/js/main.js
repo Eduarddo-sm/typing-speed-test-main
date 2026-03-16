@@ -211,6 +211,7 @@ function getStats(){
 }
 
 function callModal(){
+    const mainContainer = document.querySelector(".container");
     const containerModal = document.querySelector("#modal");
     const containerContent = document.querySelector(".container__content");
     const title = document.querySelector(".modal__text h1");
@@ -224,6 +225,8 @@ function callModal(){
     const button = document.querySelector("#modal button");
     const imgModal = document.querySelector("#modal img");
     const user = JSON.parse(localStorage.getItem("stats"));
+    const divSize = mainContainer.getBoundingClientRect();
+    console.log(divSize.width);
 
     if (stats.accuracy <= 90){
             accuracy.style.color = "hsl(354, 63%, 57%)";
@@ -284,6 +287,7 @@ buttonRestart.addEventListener("click", ()=>{
 
 
 function letTest(){
+    const mainContainer = document.querySelector(".container");
     const containerModal = document.querySelector("#modal");
     const containerContent = document.querySelector(".container__content");
     const title = document.querySelector(".modal__text h1");
@@ -297,6 +301,8 @@ function letTest(){
     const button = document.querySelector("#modal button");
     const imgModal = document.querySelector("#modal img");
     const user = JSON.parse(localStorage.getItem("stats"));
+    const divSize = mainContainer.getBoundingClientRect();
+    console.log(divSize.width);
 
         containerModal.style.display = "flex";
         containerContent.style.display = "none";
@@ -310,9 +316,11 @@ function letTest(){
         containerModal.style.setProperty("--scale", "scale(1.2)")
         containerModal.style.setProperty("--left", "0px")
         containerModal.style.setProperty("--top", "530px")
+        if (divSize.width < 430){
+            containerModal.style.setProperty("--top", "350px")
+        }
         wpm.textContent = stats.wpm;
         accuracy.textContent = `${stats.accuracy}%`;
-
         characterCorrect.textContent = correct;
         characterWrong.textContent = wrong;
 

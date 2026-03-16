@@ -389,6 +389,24 @@ main {
         padding: 0 20px;
     }
 
+    .modal img {
+    margin-bottom: 10px;
+
+    }
+
+
+    .modal__text h1 {
+        font-size: 1.3rem;
+    }
+
+    .modal__text p {
+        font-size: 1rem;
+    }
+
+    .modal__boxes #boxes {
+        padding: 0.5rem 1rem;
+    }
+
     .modal::before {
         top: 0px;
         left: -20px;
@@ -396,10 +414,10 @@ main {
     }
 
     .modal::after {
-        top: 338px;
+        top: var(--top);
         left: 0px;
         background-image: var(--bg-win);
-        transform: scale(0.5);
+        transform: var(--left);
     }
 
     .modal__boxes {
