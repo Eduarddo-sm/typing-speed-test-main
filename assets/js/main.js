@@ -211,6 +211,7 @@ function getStats(){
 }
 
 function callModal(){
+    const containerMain = document.querySelector(".container");
     const containerModal = document.querySelector("#modal");
     const containerContent = document.querySelector(".container__content");
     const title = document.querySelector(".modal__text h1");
@@ -224,6 +225,7 @@ function callModal(){
     const button = document.querySelector("#modal button");
     const imgModal = document.querySelector("#modal img");
     const user = JSON.parse(localStorage.getItem("stats"));
+    const bgModal = document.querySelector(".bg");
 
     if (stats.accuracy <= 90){
             accuracy.style.color = "hsl(354, 63%, 57%)";
@@ -238,7 +240,7 @@ function callModal(){
         imgModal.src = "./assets/images/icon-completed.svg";
         wpm.textContent = stats.wpm;
         accuracy.textContent = `${stats.accuracy}%`;
-
+        bgModal.classList.add("active");
         characterCorrect.textContent = correct;
         characterWrong.textContent = wrong;
 
@@ -250,13 +252,10 @@ function callModal(){
         imgModal.src = "./assets/images/icon-new-pb.svg";
         title.textContent = "High Score Smashed!";
         subtitle.textContent = "Youre getting fast. That was incredible typing.";
-        containerModal.style.setProperty("--bg-win", 'url("./assets/images/pattern-confetti.svg")');
-        containerModal.style.setProperty("--scale", "scale(1.2)");
-        containerModal.style.setProperty("--left", "0px");
-        containerModal.style.setProperty("--top", "530px")
+        containerModal.style.setProperty("--display", "none");
+
         wpm.textContent = stats.wpm;
         accuracy.textContent = `${stats.accuracy}%`;
-
         characterCorrect.textContent = correct;
         characterWrong.textContent = wrong;
 
@@ -281,7 +280,6 @@ buttonRestart.addEventListener("click", ()=>{
     containerModal.style.display = "none";
     containerContent.style.display = "flex";
 })
-
 
 startTyping();
 

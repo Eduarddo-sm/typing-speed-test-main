@@ -15,8 +15,5 @@ body, html {
 }
 
 .modal {
-    --bg-win: url("../images/pattern-star-1.svg");
-    --scale: scale(1.0);
-    --left: 1300px;
-    --top: 350px;
+    --display: block;
 }
