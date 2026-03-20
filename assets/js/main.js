@@ -8,6 +8,9 @@ const buttonRestart = document.getElementById("button__restart");
 const contentContainer = document.querySelector(".card__content");
 const difficultySelectMobile = document.getElementById("difficultySelect");
 const modeSelectMobile = document.getElementById("modeSelect");
+const sectionButton = document.querySelector(".sectionButton");
+const buttonRepeat = document.querySelector(".button__repeat");
+
 let testStarted = false;
 let time = 60;
 let timeStarted = false;
@@ -63,6 +66,8 @@ function startTyping() {
     getStats();
     renderText(text);
     testStarted = true;
+    resetTime();
+    time = 60;
 }
 
 function renderText(text) {
@@ -168,6 +173,7 @@ btnStart.addEventListener("click", () =>{
     container.style.display = "none";
     input.focus();
     startTyping();
+    sectionButton.classList.add("active");
 })
 
 textContainer.addEventListener("click", ()=>{
@@ -187,12 +193,18 @@ contentContainer.addEventListener("click", (event)=>{
     if (clickY < divHalf) {
         if (display == "flex") {
             container.style.display = "none";
+            sectionButton.classList.add("active");
             startTyping();
             input.focus();
         } else {
             return
         }
+        
     } 
+})
+
+buttonRepeat.addEventListener("click", ()=>{
+    startTyping();
 })
 
 function saveStats(){
@@ -211,7 +223,6 @@ function getStats(){
 }
 
 function callModal(){
-    const containerMain = document.querySelector(".container");
     const containerModal = document.querySelector("#modal");
     const containerContent = document.querySelector(".container__content");
     const title = document.querySelector(".modal__text h1");
@@ -226,6 +237,7 @@ function callModal(){
     const imgModal = document.querySelector("#modal img");
     const user = JSON.parse(localStorage.getItem("stats"));
     const bgModal = document.querySelector(".bg");
+    sectionButton.classList.remove("active");
 
     if (stats.accuracy <= 90){
             accuracy.style.color = "hsl(354, 63%, 57%)";
@@ -279,10 +291,7 @@ buttonRestart.addEventListener("click", ()=>{
     containerStart.style.display = "flex";
     containerModal.style.display = "none";
     containerContent.style.display = "flex";
+    
 })
 
 startTyping();
-
-
-
-
